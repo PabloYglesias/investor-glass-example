@@ -27,11 +27,10 @@ public class Main extends Activity {
 	static final String DATA_TITLE = "T";
 	static final String DATA_LINK  = "L";
 	static final String DATA_ENCLOSURE  = "E";
-	
-	
-	
+
 	static LinkedList<HashMap<String, String>> data;
 
+	/*
 	
 	static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
 	
@@ -133,4 +132,5 @@ public class Main extends Activity {
     			progressHandler.sendMessage(msg);
     		}}).start();
     }    
+    */
 }

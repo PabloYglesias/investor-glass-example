@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
  * Activity showing the options menu.
  */
 public class MainActivity extends Activity {
+	
+	InvestorCardAdapter mInvestorAdapter = new InvestorCardAdapter();
+	CardScrollView mCardScrollView = new CardScrollView(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +27,12 @@ public class MainActivity extends Activity {
 		InvestorCard card1 = new InvestorCard(this, "BBVA", "44.5", "+0.56%", R.drawable.bbva_left);
 		InvestorCard card2 = new InvestorCard(this, "DIA", "41.5", "+0.56%", R.drawable.dialeft);
 		
-		CardScrollView mCardScrollView = new CardScrollView(this);
+		//CardScrollView mCardScrollView = new CardScrollView(this);
 		InvestorCardAdapter adapter = new InvestorCardAdapter();
 		adapter.addInvestorCard(card1);
 		adapter.addInvestorCard(card2);
 		
-		mCardScrollView.setAdapter(adapter);
+		//mCardScrollView.setAdapter(adapter);
 		mCardScrollView.activate();
 		
 		RelativeLayout mLayout = (RelativeLayout) findViewById(R.id.mainLayout);
@@ -64,14 +67,15 @@ public class MainActivity extends Activity {
 		case R.id.stop:
 			finish();
 			return true;
+		case R.id.stocks:
+			mCardScrollView.setAdapter(mInvestorAdapter);
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+		
 	}
 
 	@Override
 	public void onOptionsMenuClosed(Menu menu) {
-		// No hace nada, para salir hacer swipe hacia abajo
-		
 	}
 }

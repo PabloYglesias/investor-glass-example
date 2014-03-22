@@ -6,6 +6,10 @@
     <string name="glass_voice_prompt">which action?</string>
     
     <string name="stop">Stop</string>
-    <string name="press_news">News</string>
- 
+    
+    <string name="stocks">Stocs</string>
+    <string name="press_news">Press news</string>
+	<string name="press_events">Press events</string>
+	<string name="press_presentations">Press presentations</string>
+    
 </resources>
