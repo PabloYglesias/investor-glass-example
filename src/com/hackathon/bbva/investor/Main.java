@@ -1,19 +1,21 @@
 package com.hackathon.bbva.investor;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import com.example.com.hackathon.bbva.investor.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -26,26 +28,27 @@ public class Main extends Activity {
 	
 	static final String DATA_TITLE = "T";
 	static final String DATA_LINK  = "L";
-	static final String DATA_ENCLOSURE  = "E";
-
-	static LinkedList<HashMap<String, String>> data;
-
-	/*
 	
-	static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
+	
+	
+	static LinkedList<HashMap<String, String>> data;
+	static LinkedList<HashMap<String, String>>msg;
+	
+	//static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
 	
 	
 	private ProgressDialog progressDialog;
 	
+	/*
 	
 	private final Handler progressHandler = new Handler() {
 		@SuppressWarnings("unchecked")
-		public void handleMessage(Message msg) {
-			if (msg.obj != null) {
-				data = (LinkedList<HashMap<String, String>>)msg.obj;
-				setData(data);					
-			}
-			progressDialog.dismiss();
+		public void handleMessage() {
+			//if (msg.obj != null) {
+				//data = (LinkedList<HashMap<String, String>>)msg.obj;
+								
+			//}
+			//progressDialog.dismiss();
 	    }
 	};
 	
@@ -71,7 +74,7 @@ public class Main extends Activity {
     				       .setCancelable(false)
     				       .setPositiveButton("Si", new DialogInterface.OnClickListener() {
     				           public void onClick(DialogInterface dialog, int id) {
-    				        	   loadData();
+    				        	   //loadData();
     				           }
     				       })
     				       .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -83,7 +86,7 @@ public class Main extends Activity {
     				       .show();
     			  				
     			} else {
-    				loadData();
+    				loadData(2);
     			}
     		}
     	});
@@ -116,21 +119,70 @@ public class Main extends Activity {
     }   
     
 
-    private void loadData() {
-    	progressDialog = ProgressDialog.show(
+    private void loadData(int i) {
+    	/progressDialog = ProgressDialog.show(
     			Main.this,
     			"", 
     			"Por favor espere mientras se cargan los datos...", 
     			true);
+
+    	if(i==1){
+    	this.runOnUiThread(new Runnable() {
+    		  public void run() {
+    			  
+    			  AssetManager assetManager = getAssets();
+    			  InputStream inputStream = null;
+    			  try {
+    			      inputStream = assetManager.open("press.xml");
+    			  }
+    			  catch (IOException e){
+    			      Log.e("message: ",e.getMessage());
+    			  }
+    				XMLParser parser = new XMLParser(inputStream); 
+                    msg = parser.parse();
+                    setData(msg);	
+    		  }
+    		});
     	
-    	new Thread(new Runnable(){
-    		@Override
-    		public void run() {
-    			XMLParser parser = new XMLParser(feedUrl); 
-                Message msg = progressHandler.obtainMessage();
-                msg.obj = parser.parse();
-    			progressHandler.sendMessage(msg);
-    		}}).start();
-    }    
+    	}else if(i==2){
+        	this.runOnUiThread(new Runnable() {
+      		  public void run() {
+      			  
+      			  AssetManager assetManager = getAssets();
+      			  InputStream inputStream = null;
+      			  try {
+      			      inputStream = assetManager.open("events.xml");
+      			  }
+      			  catch (IOException e){
+      			      Log.e("message: ",e.getMessage());
+      			  }
+      				XMLParser parser = new XMLParser(inputStream); 
+                      msg = parser.parse();
+                      setData(msg);	
+      		  }
+      		});
+      	
+      	}
+    	if(i==3){
+        	this.runOnUiThread(new Runnable() {
+        		  public void run() {
+        			  
+        			  AssetManager assetManager = getAssets();
+        			  InputStream inputStream = null;
+        			  try {
+        			      inputStream = assetManager.open("presentation.xml");
+        			  }
+        			  catch (IOException e){
+        			      Log.e("message: ",e.getMessage());
+        			  }
+        				XMLParser parser = new XMLParser(inputStream); 
+                        msg = parser.parse();
+                        setData(msg);	
+        		  }
+        		});
+        	
+        	}
+    	
+    }   
     */
 }

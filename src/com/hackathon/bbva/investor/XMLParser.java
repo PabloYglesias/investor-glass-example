@@ -1,5 +1,7 @@
 package com.hackathon.bbva.investor;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -13,24 +15,59 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import android.app.Activity;
+import android.util.Log;
+
 public class XMLParser {
-	private URL url;
+
+	InputStream is;
 	
-	public XMLParser(String url) {
-		try {
-			this.url = new URL(url);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+	public XMLParser(InputStream is) {
+		
+		if(is!=null){
+		this.is=is;
 		}
+		else{
+			Log.d("prueba","llego aqui");
+		}
+		
+		/*if(value==1){
+			
+		Log.d("prueba","llego aqui");
+		is=getResources().openRawResource(R.raw.press);
+		Log.d("prueba2",""+ is);
+				//getAssets().open("press.xml");
+		}
+		else if(value==2){
+			try {
+				is=getResources().getAssets().open("events.xml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//is = res.openRawResource(R.raw.events);
+		}
+		else{
+			try {
+				is=getResources().getAssets().open("presentation.xml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//is = res.openRawResource(R.raw.presentation);
+		}*/
 	}
 	
 	public LinkedList<HashMap<String, String>> parse() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		LinkedList<HashMap<String, String>> entries = new LinkedList<HashMap<String, String>>();
 		HashMap<String, String> entry;
+		
 		try {
+			
+			Log.d("prueba3","llego aqui3");
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document dom = builder.parse(this.url.openConnection().getInputStream());
+			Document dom = builder.parse(is);
 			Element root = dom.getDocumentElement();
 			NodeList items = root.getElementsByTagName("item");
 			for (int i=0;i<items.getLength();i++){

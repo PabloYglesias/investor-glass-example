@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.example.com.hackathon.bbva.investor.R;
@@ -16,7 +17,7 @@ import com.google.android.glass.app.Card;
 public class InvestorDynamicCard extends InvestorCard {
 	
 	private ArrayList<InvestorCard> mList;
-	private int DELAY_TIME = 3000;
+	private int DELAY_TIME = 1000;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
@@ -50,8 +51,10 @@ public class InvestorDynamicCard extends InvestorCard {
 		InvestorCard invCard = itCards.next();
 		this.copy(invCard);
 		
+		Log.e("Dynamic cards", "changing card: " + invCard.getText());
+		
 		mContainer.notifyDataSetChanged();
-		mHandler.postDelayed(mRunnable, DELAY_TIME);
+		mHandler.postDelayed(mRunnable, 1000);
 	}
 	
 	

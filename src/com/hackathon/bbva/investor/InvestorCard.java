@@ -49,6 +49,10 @@ public class InvestorCard extends Card {
 		mStockIncrement = card.mStockIncrement;
 		mIdImage = card.mIdImage;
 		
+		mIsFull = card.mIsFull;
+		
+		this.clearImages();
+		
 		setUI();
 	}
 	

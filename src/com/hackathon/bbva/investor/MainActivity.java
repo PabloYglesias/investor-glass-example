@@ -1,5 +1,7 @@
 package com.hackathon.bbva.investor;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,8 +10,10 @@ import com.example.com.hackathon.bbva.investor.R;
 import com.google.android.glass.widget.CardScrollView;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +38,7 @@ public class MainActivity extends Activity {
 	static final String DATA_ENCLOSURE  = "E";
 
 	static LinkedList<HashMap<String, String>> data;
+	static LinkedList<HashMap<String, String>>msg;
 
 	
 	static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
@@ -111,8 +116,8 @@ public class MainActivity extends Activity {
 		case R.id.stocks:
 			
 			InvestorCard card1 = new InvestorCard(this, "      BBVA", "      8.719", "-0.50%", R.drawable.bbvaleft);
-			InvestorCard card2 = new InvestorCard(this, "      TELE5",  "    8.374", "-0.52%", R.drawable.telecincofull, true);
-			InvestorCard card3 = new InvestorCard(this, "      DIA",  "    6.124", "+0.41%", R.drawable.dialeft);
+			InvestorCard card2 = new InvestorCard(this, "      TELE5",  "      8.374", "-0.52%", R.drawable.telecincofull, true);
+			InvestorCard card3 = new InvestorCard(this, "      DIA",  "     6.124", "+0.41%", R.drawable.dialeft);
 			
 			ArrayList<InvestorCard> listInvestor = new ArrayList<InvestorCard>();
 			listInvestor.add(card1);
@@ -130,7 +135,13 @@ public class MainActivity extends Activity {
 			mCardScrollView.setAdapter(mInvestorAdapter);
 			return true;
 		case R.id.press_news:
-			loadData();
+			loadData(1);
+			return true;
+		case R.id.press_events:
+			loadData(2);
+			return true;
+		case R.id.press_presentations:
+			loadData(3);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -143,24 +154,65 @@ public class MainActivity extends Activity {
 	}
 	
 	
-	private void loadData() {
-		/*
-    	progressDialog = ProgressDialog.show(
-    			MainActivity.this,
-    			"", 
-    			"Por favor espere mientras se cargan los datos...", 
-    			true);
-    			*/
-    	
-    	new Thread(new Runnable(){
-    		@Override
-    		public void run() {
-    			XMLParser parser = new XMLParser(feedUrl); 
-                Message msg = progressHandler.obtainMessage();
-                msg.obj = parser.parse();
-    			progressHandler.sendMessage(msg);
-    		}}).start();
-	  }
+	private void loadData(int i) {
+	    	if(i==1){
+	    	this.runOnUiThread(new Runnable() {
+	    		  public void run() {
+	    			  
+	    			  AssetManager assetManager = getAssets();
+	    			  InputStream inputStream = null;
+	    			  try {
+	    			      inputStream = assetManager.open("press.xml");
+	    			  }
+	    			  catch (IOException e){
+	    			      Log.e("message: ",e.getMessage());
+	    			  }
+	    				XMLParser parser = new XMLParser(inputStream); 
+	                    msg = parser.parse();
+	                    setData(msg);	
+	    		  }
+	    		});
+	    	
+	    	}else if(i==2){
+	        	this.runOnUiThread(new Runnable() {
+	      		  public void run() {
+	      			  
+	      			  AssetManager assetManager = getAssets();
+	      			  InputStream inputStream = null;
+	      			  try {
+	      			      inputStream = assetManager.open("events.xml");
+	      			  }
+	      			  catch (IOException e){
+	      			      Log.e("message: ",e.getMessage());
+	      			  }
+	      				XMLParser parser = new XMLParser(inputStream); 
+	                      msg = parser.parse();
+	                      setData(msg);	
+	      		  }
+	      		});
+	      	
+	      	}
+	    	if(i==3){
+	        	this.runOnUiThread(new Runnable() {
+	        		  public void run() {
+	        			  
+	        			  AssetManager assetManager = getAssets();
+	        			  InputStream inputStream = null;
+	        			  try {
+	        			      inputStream = assetManager.open("presentation.xml");
+	        			  }
+	        			  catch (IOException e){
+	        			      Log.e("message: ",e.getMessage());
+	        			  }
+	        				XMLParser parser = new XMLParser(inputStream); 
+	                        msg = parser.parse();
+	                        setData(msg);	
+	        		  }
+	        		});
+	        	
+	        	}
+	    	
+	    }   
 	
 	private void setData(LinkedList<HashMap<String, String>> data){
     	
