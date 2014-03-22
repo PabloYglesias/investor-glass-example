@@ -45,9 +45,6 @@ public class XMLParser {
 					} else if (name.equalsIgnoreCase("link")){
 						entry.put(Main.DATA_LINK, property.getFirstChild().getNodeValue());						
 					}
-					else if (name.equalsIgnoreCase("description")){
-					entry.put(Main.DATA_ENCLOSURE, property.getFirstChild().getNodeValue());						
-				}
 					
 				}
 				entries.add(entry);

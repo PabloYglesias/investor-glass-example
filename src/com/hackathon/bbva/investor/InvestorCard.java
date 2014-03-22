@@ -29,10 +29,22 @@ public class InvestorCard extends Card {
 		this.setImageLayout(ImageLayout.LEFT); //para la izquierda
 		this.addImage(mIdImage);
 		// Add the elements to the card
-		this.setText(stockValue);
-		this.setFootnote(mStockValue);
+		this.setText(mStockValue);
+		this.setFootnote(mStockIncrement);
 	}
 
-	
+	public void copy(InvestorCard card) {
+		
+		mTitle = card.mTitle;
+		mStockValue = card.mStockValue;
+		mStockIncrement = card.mStockIncrement;
+		mIdImage = card.mIdImage;
+		
+		this.setImageLayout(ImageLayout.LEFT); //para la izquierda
+		this.addImage(mIdImage);
+		// Add the elements to the card
+		this.setText(mStockValue);
+		this.setFootnote(mStockIncrement);
+	}
 	
 }

@@ -1,5 +1,6 @@
 package com.hackathon.bbva.investor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -7,7 +8,6 @@ import com.example.com.hackathon.bbva.investor.R;
 import com.google.android.glass.widget.CardScrollView;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.KeyEvent;
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 	static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
 	
 	
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 
 
 	private final Handler progressHandler = new Handler() {
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 				data = (LinkedList<HashMap<String, String>>)msg.obj;
 				setData(data);					
 			}
-			progressDialog.dismiss();
+			//progressDialog.dismiss();
 	    }
 	};
 	
@@ -97,10 +97,16 @@ public class MainActivity extends Activity {
 			InvestorCard card1 = new InvestorCard(this, "BBVA", "44.5", "+0.56%", R.drawable.bbvaleft);
 			InvestorCard card2 = new InvestorCard(this, "DIA", "41.5", "+0.56%", R.drawable.dialeft);
 			
+			ArrayList<InvestorCard> listInvestor = new ArrayList<InvestorCard>();
+			listInvestor.add(card1);
+			listInvestor.add(card2);
+			InvestorDynamicCard card3 = new InvestorDynamicCard(this, listInvestor, mCardScrollView);
+			
 			//CardScrollView mCardScrollView = new CardScrollView(this);
 			mInvestorAdapter = new InvestorCardAdapter();
 			mInvestorAdapter.addInvestorCard(card1);
 			mInvestorAdapter.addInvestorCard(card2);
+			mInvestorAdapter.addInvestorCard(card3);
 			
 			mCardScrollView.setAdapter(mInvestorAdapter);
 			return true;
@@ -119,11 +125,13 @@ public class MainActivity extends Activity {
 	
 	
 	private void loadData() {
+		/*
     	progressDialog = ProgressDialog.show(
     			MainActivity.this,
     			"", 
     			"Por favor espere mientras se cargan los datos...", 
     			true);
+    			*/
     	
     	new Thread(new Runnable(){
     		@Override
