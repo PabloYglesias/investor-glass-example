@@ -5,22 +5,22 @@
     <item
         android:id="@+id/stocks"
         android:title="@string/stocks"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/stocks" />
     
     <item
         android:id="@+id/press_news"
         android:title="@string/press_news"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/press_news" />
         
     <item
         android:id="@+id/press_events"
         android:title="@string/press_events"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/press_events" />
     
     <item
         android:id="@+id/press_presentations"
         android:title="@string/press_presentations"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/presentations" />
     
     <item
         android:id="@+id/stop"

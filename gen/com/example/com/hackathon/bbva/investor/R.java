@@ -11,13 +11,15 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int bbva_graph=0x7f020000;
-        public static final int bbva_left=0x7f020001;
-        public static final int dialeft=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ic_stop=0x7f020004;
-        public static final int ic_storefront_50=0x7f020005;
-        public static final int telecincofull=0x7f020006;
+        public static final int bbvaleft=0x7f020000;
+        public static final int dialeft=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_stop=0x7f020003;
+        public static final int presentations=0x7f020004;
+        public static final int press_events=0x7f020005;
+        public static final int press_news=0x7f020006;
+        public static final int stocks=0x7f020007;
+        public static final int telecincofull=0x7f020008;
     }
     public static final class id {
         public static final int mainLayout=0x7f080000;
