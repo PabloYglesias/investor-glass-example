@@ -38,27 +38,8 @@ public class MainActivity extends Activity {
 	static final String DATA_ENCLOSURE  = "E";
 
 	static LinkedList<HashMap<String, String>> data;
-	static LinkedList<HashMap<String, String>>msg;
+	static LinkedList<HashMap<String, String>> msg;
 
-	
-	static String feedUrl = "http://prensa.bbva.com/view_manager.html?root=9882,22&rss=1";	
-	
-	
-	//private ProgressDialog progressDialog;
-
-
-	private final Handler progressHandler = new Handler() {
-		@SuppressWarnings("unchecked")
-		public void handleMessage(Message msg) {
-			if (msg.obj != null) {
-				data = (LinkedList<HashMap<String, String>>)msg.obj;
-				setData(data);					
-			}
-			//progressDialog.dismiss();
-	    }
-	};
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,13 +104,14 @@ public class MainActivity extends Activity {
 			listInvestor.add(card1);
 			listInvestor.add(card2);
 			listInvestor.add(card3);
-			InvestorDynamicCard card4 = new InvestorDynamicCard(this, listInvestor, mInvestorAdapter);
 			
 			//CardScrollView mCardScrollView = new CardScrollView(this);
 			mInvestorAdapter = new InvestorCardAdapter();
 			mInvestorAdapter.addInvestorCard(card1);
 			mInvestorAdapter.addInvestorCard(card2);
 			mInvestorAdapter.addInvestorCard(card3);
+			
+			InvestorDynamicCard card4 = new InvestorDynamicCard(this, listInvestor, mCardScrollView, mInvestorAdapter);
 			mInvestorAdapter.addInvestorCard(card4);
 			
 			mCardScrollView.setAdapter(mInvestorAdapter);
@@ -154,7 +136,7 @@ public class MainActivity extends Activity {
 	}
 	
 	
-	private void loadData(int i) {
+	private void loadData(final int i) {
 	    	if(i==1){
 	    	this.runOnUiThread(new Runnable() {
 	    		  public void run() {
@@ -169,7 +151,7 @@ public class MainActivity extends Activity {
 	    			  }
 	    				XMLParser parser = new XMLParser(inputStream); 
 	                    msg = parser.parse();
-	                    setData(msg);	
+	                    setData(msg, i);	
 	    		  }
 	    		});
 	    	
@@ -187,7 +169,7 @@ public class MainActivity extends Activity {
 	      			  }
 	      				XMLParser parser = new XMLParser(inputStream); 
 	                      msg = parser.parse();
-	                      setData(msg);	
+	                      setData(msg, i);	
 	      		  }
 	      		});
 	      	
@@ -206,7 +188,7 @@ public class MainActivity extends Activity {
 	        			  }
 	        				XMLParser parser = new XMLParser(inputStream); 
 	                        msg = parser.parse();
-	                        setData(msg);	
+	                        setData(msg, i);	
 	        		  }
 	        		});
 	        	
@@ -214,12 +196,12 @@ public class MainActivity extends Activity {
 	    	
 	    }   
 	
-	private void setData(LinkedList<HashMap<String, String>> data){
+	private void setData(LinkedList<HashMap<String, String>> data, int type){
     	
 		mPressAdapter.clear();
 		
 		for (HashMap<String, String> hm : data) {
-			PressCard card = new PressCard(this, hm.get(DATA_TITLE), hm.get(DATA_LINK));
+			PressCard card = new PressCard(this, hm.get(DATA_TITLE), hm.get(DATA_LINK), type);
 			mPressAdapter.addPressCard(card);
 		}
 		

@@ -19,6 +19,18 @@ public class InvestorCard extends Card {
 	private int mIdImage;
 	private boolean mIsFull = false;
 	
+	public String getTitle() {
+		return mTitle;
+	}
+	
+	public String getStockValue() {
+		return mStockValue;
+	}
+	
+	public String getStockIncrement() {
+		return mStockIncrement;
+	}
+	
 	public InvestorCard(Context context, String title, String stockValue, String stockIncrement, int idImage, boolean isFull) {
 		super(context);
 		

@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.example.com.hackathon.bbva.investor.R;
 import com.google.android.glass.app.Card;
+import com.google.android.glass.widget.CardScrollView;
 
 public class InvestorDynamicCard extends InvestorCard {
 	
@@ -21,15 +22,17 @@ public class InvestorDynamicCard extends InvestorCard {
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
-	private InvestorCardAdapter mContainer;
+	private InvestorCardAdapter mAdapter;
+	private CardScrollView mContainer;
 	
 	private Iterator<InvestorCard> itCards;
 	
-	public InvestorDynamicCard(Context context, ArrayList<InvestorCard> list, InvestorCardAdapter container) {
-		super(context, "Test", "Test", "Test", R.drawable.bbvaleft);
+	public InvestorDynamicCard(Context context, ArrayList<InvestorCard> list, CardScrollView container, InvestorCardAdapter adapter) {
+		super(context, list.get(0).getTitle(), list.get(0).getStockValue(), list.get(0).getStockIncrement(), R.drawable.bbvaleft);
 		
 		mList = list;
 		
+		mAdapter = adapter;
 		mContainer = container;
 		itCards = mList.iterator();
 		
@@ -53,7 +56,9 @@ public class InvestorDynamicCard extends InvestorCard {
 		
 		Log.e("Dynamic cards", "changing card: " + invCard.getText());
 		
-		mContainer.notifyDataSetChanged();
+		mAdapter.notifyDataSetChanged();
+		mContainer.postInvalidate();
+		
 		mHandler.postDelayed(mRunnable, 1000);
 	}
 	

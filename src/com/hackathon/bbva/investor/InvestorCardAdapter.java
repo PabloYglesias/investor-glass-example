@@ -2,6 +2,7 @@ package com.hackathon.bbva.investor;
 
 import java.util.ArrayList;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +20,7 @@ public class InvestorCardAdapter extends CardScrollAdapter {
 
 	@Override
 	public View getView(int position, View contentView, ViewGroup parent) {
+		Log.e("InvestorCardAdapter", "getView: " + position + " " + mCards.get(position).getTitle());
 		return mCards.get(position).toView();
 	}
 
