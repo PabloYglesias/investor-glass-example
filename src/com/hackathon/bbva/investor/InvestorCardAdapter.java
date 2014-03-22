@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.glass.app.Card;
 import com.google.android.glass.widget.CardScrollAdapter;
 
 public class InvestorCardAdapter extends CardScrollAdapter {
 
-	private ArrayList<Card> mCards;
+	private ArrayList<InvestorCard> mCards;
 
 	@Override
 	public View getView(int position, View contentView, ViewGroup parent) {
@@ -19,26 +18,22 @@ public class InvestorCardAdapter extends CardScrollAdapter {
 
 	@Override
 	public int findIdPosition(Object arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int findItemPosition(Object arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mCards.size();
 	}
 
 	@Override
-	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getItem(int position) {
+		return mCards.get(position);
 	}
 
 	
