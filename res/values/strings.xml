@@ -5,4 +5,6 @@
     <string name="glass_voice_trigger">investor</string>
     <string name="glass_voice_prompt">which action?</string>
     
+    <string name="stop">Stop</string>
+    
 </resources>
