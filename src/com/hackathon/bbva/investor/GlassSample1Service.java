@@ -31,7 +31,5 @@ public class GlassSample1Service extends Service {
 
 		// A–adir card al timeline
 		TimelineManager.from(this).insert(card1);
-		
-		
 	}
 }

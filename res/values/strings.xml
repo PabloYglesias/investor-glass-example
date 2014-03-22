@@ -2,7 +2,7 @@
 
     <string name="app_name">com.hackathon.bbva.investor</string>
     
-    <string name="glass_voice_trigger">bbva investor</string>
+    <string name="glass_voice_trigger">investor</string>
     <string name="glass_voice_prompt">which action?</string>
     
 
