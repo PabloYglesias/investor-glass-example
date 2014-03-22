@@ -4,6 +4,12 @@ import android.content.Context;
 
 import com.google.android.glass.app.Card;
 
+/*
+card.setImageLayout(ImageLayout.FULL); //para el fondo
+card.setImageLayout(ImageLayout.LEFT); //para la izquierda
+card.addImage(R.drawable.card_chocolate_background);
+*/
+
 public class InvestorCard extends Card {
 
 	private String mTitle;
@@ -18,7 +24,7 @@ public class InvestorCard extends Card {
 		mStockIncrement = stockIncrement;
 		
 		// Add the elements to the card
-		this.setText(mTitle);
+		this.setText(stockValue);
 		this.setFootnote(mStockValue);
 	}
 

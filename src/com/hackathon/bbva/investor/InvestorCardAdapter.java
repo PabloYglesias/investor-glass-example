@@ -7,9 +7,15 @@ import android.view.ViewGroup;
 
 import com.google.android.glass.widget.CardScrollAdapter;
 
+
+
 public class InvestorCardAdapter extends CardScrollAdapter {
 
 	private ArrayList<InvestorCard> mCards;
+	
+	public void addInvestorCard(InvestorCard card) {
+		mCards.add(card);
+	}
 
 	@Override
 	public View getView(int position, View contentView, ViewGroup parent) {
