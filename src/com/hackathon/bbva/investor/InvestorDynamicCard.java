@@ -18,7 +18,7 @@ import com.google.android.glass.widget.CardScrollView;
 public class InvestorDynamicCard extends InvestorCard {
 	
 	private ArrayList<InvestorCard> mList;
-	private int DELAY_TIME = 1000;
+	private int DELAY_TIME = 3000;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
@@ -28,7 +28,7 @@ public class InvestorDynamicCard extends InvestorCard {
 	private Iterator<InvestorCard> itCards;
 	
 	public InvestorDynamicCard(Context context, ArrayList<InvestorCard> list, CardScrollView container, InvestorCardAdapter adapter) {
-		super(context, list.get(0).getTitle(), list.get(0).getStockValue(), list.get(0).getStockIncrement(), R.drawable.bbvaleft);
+		super(context, list.get(0).getTitle(), list.get(0).getStockValue(), list.get(0).getStockIncrement(), list.get(0).getImageID());
 		
 		mList = list;
 		
@@ -43,7 +43,7 @@ public class InvestorDynamicCard extends InvestorCard {
 				update();
 			}
 		};
-		mHandler.postDelayed(mRunnable, 100);
+		mHandler.postDelayed(mRunnable, DELAY_TIME);
 	}
 
 	private void update() {
@@ -59,7 +59,7 @@ public class InvestorDynamicCard extends InvestorCard {
 		mAdapter.notifyDataSetChanged();
 		mContainer.postInvalidate();
 		
-		mHandler.postDelayed(mRunnable, 1000);
+		mHandler.postDelayed(mRunnable, DELAY_TIME);
 	}
 	
 	

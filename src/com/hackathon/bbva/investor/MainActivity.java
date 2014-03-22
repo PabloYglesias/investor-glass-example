@@ -100,19 +100,24 @@ public class MainActivity extends Activity {
 			InvestorCard card2 = new InvestorCard(this, "      TELE5",  "      8.374", "-0.52%", R.drawable.telecincofull, true);
 			InvestorCard card3 = new InvestorCard(this, "      DIA",  "     6.124", "+0.41%", R.drawable.dialeft);
 			
+			InvestorCard card1i = new InvestorCard(this, "Dave recommends:", "EBRO FOODS up 1,07%", "SELL", R.drawable.dave);
+			InvestorCard card2i = new InvestorCard(this, "Alice alerts:", "TELE5 down 0,52%", "BUY", R.drawable.alice);
+			InvestorCard card3i = new InvestorCard(this, "Jenny suggests:", "BPA METAL STEEL COMPANY over 0,35", "BUY", R.drawable.jenny);
+			
 			ArrayList<InvestorCard> listInvestor = new ArrayList<InvestorCard>();
-			listInvestor.add(card1);
-			listInvestor.add(card2);
-			listInvestor.add(card3);
+			listInvestor.add(card1i);
+			listInvestor.add(card2i);
+			listInvestor.add(card3i);
 			
 			//CardScrollView mCardScrollView = new CardScrollView(this);
 			mInvestorAdapter = new InvestorCardAdapter();
-			mInvestorAdapter.addInvestorCard(card1);
-			mInvestorAdapter.addInvestorCard(card2);
-			mInvestorAdapter.addInvestorCard(card3);
 			
 			InvestorDynamicCard card4 = new InvestorDynamicCard(this, listInvestor, mCardScrollView, mInvestorAdapter);
 			mInvestorAdapter.addInvestorCard(card4);
+			
+			mInvestorAdapter.addInvestorCard(card1);
+			mInvestorAdapter.addInvestorCard(card2);
+			mInvestorAdapter.addInvestorCard(card3);
 			
 			mCardScrollView.setAdapter(mInvestorAdapter);
 			return true;
