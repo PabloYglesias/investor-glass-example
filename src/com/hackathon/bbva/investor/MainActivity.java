@@ -14,6 +14,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 import android.os.Handler;
 
@@ -60,6 +63,15 @@ public class MainActivity extends Activity {
 		//mCardScrollView.setAdapter(adapter);
 		mCardScrollView.activate();
 		
+		mCardScrollView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				 openOptionsMenu();
+			}
+		});
+		
 		RelativeLayout mLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 		mLayout.addView(mCardScrollView);
 		
@@ -75,8 +87,12 @@ public class MainActivity extends Activity {
               openOptionsMenu();
               return true;
           }
+          else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+        	  finish();
+          }
           return false;
     }
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,19 +110,22 @@ public class MainActivity extends Activity {
 			return true;
 		case R.id.stocks:
 			
-			InvestorCard card1 = new InvestorCard(this, "BBVA", "44.5", "+0.56%", R.drawable.bbvaleft);
-			InvestorCard card2 = new InvestorCard(this, "DIA", "41.5", "+0.56%", R.drawable.dialeft);
+			InvestorCard card1 = new InvestorCard(this, "      BBVA", "      8.719", "-0.50%", R.drawable.bbvaleft);
+			InvestorCard card2 = new InvestorCard(this, "      TELE5",  "    8.374", "-0.52%", R.drawable.telecincofull, true);
+			InvestorCard card3 = new InvestorCard(this, "      DIA",  "    6.124", "+0.41%", R.drawable.dialeft);
 			
 			ArrayList<InvestorCard> listInvestor = new ArrayList<InvestorCard>();
 			listInvestor.add(card1);
 			listInvestor.add(card2);
-			InvestorDynamicCard card3 = new InvestorDynamicCard(this, listInvestor, mCardScrollView);
+			listInvestor.add(card3);
+			InvestorDynamicCard card4 = new InvestorDynamicCard(this, listInvestor, mInvestorAdapter);
 			
 			//CardScrollView mCardScrollView = new CardScrollView(this);
 			mInvestorAdapter = new InvestorCardAdapter();
 			mInvestorAdapter.addInvestorCard(card1);
 			mInvestorAdapter.addInvestorCard(card2);
 			mInvestorAdapter.addInvestorCard(card3);
+			mInvestorAdapter.addInvestorCard(card4);
 			
 			mCardScrollView.setAdapter(mInvestorAdapter);
 			return true;

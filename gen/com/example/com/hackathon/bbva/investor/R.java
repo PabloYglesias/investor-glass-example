@@ -11,26 +11,31 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int bbvaleft=0x7f020000;
-        public static final int dialeft=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int ic_stop=0x7f020003;
-        public static final int presentations=0x7f020004;
-        public static final int press_events=0x7f020005;
-        public static final int press_news=0x7f020006;
-        public static final int stocks=0x7f020007;
-        public static final int telecincofull=0x7f020008;
+        public static final int alice=0x7f020000;
+        public static final int bbvaleft=0x7f020001;
+        public static final int dave=0x7f020002;
+        public static final int dialeft=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int ic_stop=0x7f020005;
+        public static final int jenny=0x7f020006;
+        public static final int presentations=0x7f020007;
+        public static final int press_events=0x7f020008;
+        public static final int press_news=0x7f020009;
+        public static final int stocks=0x7f02000a;
+        public static final int telecincofull=0x7f02000b;
     }
     public static final class id {
+        public static final int item_image=0x7f080001;
         public static final int mainLayout=0x7f080000;
-        public static final int press_events=0x7f080003;
-        public static final int press_news=0x7f080002;
-        public static final int press_presentations=0x7f080004;
-        public static final int stocks=0x7f080001;
-        public static final int stop=0x7f080005;
+        public static final int press_events=0x7f080004;
+        public static final int press_news=0x7f080003;
+        public static final int press_presentations=0x7f080005;
+        public static final int stocks=0x7f080002;
+        public static final int stop=0x7f080006;
     }
     public static final class layout {
-        public static final int livecard=0x7f030000;
+        public static final int item=0x7f030000;
+        public static final int livecard=0x7f030001;
     }
     public static final class menu {
         public static final int menu=0x7f070000;

@@ -16,19 +16,20 @@ import com.google.android.glass.app.Card;
 public class InvestorDynamicCard extends InvestorCard {
 	
 	private ArrayList<InvestorCard> mList;
-	private int DELAY_TIME = 50000;
+	private int DELAY_TIME = 3000;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
-	private View mContainer;
+	private InvestorCardAdapter mContainer;
 	
 	private Iterator<InvestorCard> itCards;
 	
-	public InvestorDynamicCard(Context context, ArrayList<InvestorCard> list, View container) {
-		super(context, "", "", "", R.drawable.bbvaleft);
+	public InvestorDynamicCard(Context context, ArrayList<InvestorCard> list, InvestorCardAdapter container) {
+		super(context, "Test", "Test", "Test", R.drawable.bbvaleft);
 		
 		mList = list;
 		
+		mContainer = container;
 		itCards = mList.iterator();
 		
 		mHandler = new Handler();
@@ -38,7 +39,7 @@ public class InvestorDynamicCard extends InvestorCard {
 				update();
 			}
 		};
-		mHandler.postDelayed(mRunnable, DELAY_TIME);
+		mHandler.postDelayed(mRunnable, 100);
 	}
 
 	private void update() {
@@ -49,7 +50,7 @@ public class InvestorDynamicCard extends InvestorCard {
 		InvestorCard invCard = itCards.next();
 		this.copy(invCard);
 		
-		mContainer.postInvalidate();
+		mContainer.notifyDataSetChanged();
 		mHandler.postDelayed(mRunnable, DELAY_TIME);
 	}
 	

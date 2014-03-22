@@ -17,6 +17,19 @@ public class InvestorCard extends Card {
 	private String mStockValue;
 	private String mStockIncrement;
 	private int mIdImage;
+	private boolean mIsFull = false;
+	
+	public InvestorCard(Context context, String title, String stockValue, String stockIncrement, int idImage, boolean isFull) {
+		super(context);
+		
+		mTitle = title;
+		mStockValue = stockValue;
+		mStockIncrement = stockIncrement;
+		mIdImage = idImage;
+		mIsFull = isFull;
+		
+		setUI();
+	}
 	
 	public InvestorCard(Context context, String title, String stockValue, String stockIncrement, int idImage) {
 		super(context);
@@ -26,11 +39,7 @@ public class InvestorCard extends Card {
 		mStockIncrement = stockIncrement;
 		mIdImage = idImage;
 		
-		this.setImageLayout(ImageLayout.LEFT); //para la izquierda
-		this.addImage(mIdImage);
-		// Add the elements to the card
-		this.setText(mStockValue);
-		this.setFootnote(mStockIncrement);
+		setUI();
 	}
 
 	public void copy(InvestorCard card) {
@@ -40,10 +49,17 @@ public class InvestorCard extends Card {
 		mStockIncrement = card.mStockIncrement;
 		mIdImage = card.mIdImage;
 		
-		this.setImageLayout(ImageLayout.LEFT); //para la izquierda
+		setUI();
+	}
+	
+	private void setUI() {
+		if (mIsFull)
+			this.setImageLayout(ImageLayout.FULL);
+		else
+			this.setImageLayout(ImageLayout.LEFT); //para la izquierda
 		this.addImage(mIdImage);
 		// Add the elements to the card
-		this.setText(mStockValue);
+		this.setText(mTitle + "\n" + mStockValue);
 		this.setFootnote(mStockIncrement);
 	}
 	
