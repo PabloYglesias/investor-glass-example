@@ -11,7 +11,7 @@ import com.google.android.glass.widget.CardScrollAdapter;
 
 public class InvestorCardAdapter extends CardScrollAdapter {
 
-	private ArrayList<InvestorCard> mCards;
+	private ArrayList<InvestorCard> mCards = new ArrayList<InvestorCard>();
 	
 	public void addInvestorCard(InvestorCard card) {
 		mCards.add(card);

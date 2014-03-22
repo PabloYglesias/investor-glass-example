@@ -10,9 +10,22 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-          
+        android:label="@string/app_name">
+         
+        <activity
+            android:name="com.hackathon.bbva.investor.MainActivity"
+            android:enabled="true"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.google.android.glass.VoiceTrigger"
+                android:resource="@xml/my_trigger" />
+        </activity>
+        
+        <!-- 
          <service
             android:name="com.hackathon.bbva.investor.GlassSample1Service"
             android:icon="@drawable/ic_storefront_50"
@@ -27,6 +40,7 @@
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/my_trigger" />
         </service>
+         -->
     </application>
 
 </manifest>

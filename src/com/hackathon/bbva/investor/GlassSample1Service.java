@@ -109,12 +109,12 @@ public class GlassSample1Service extends Service {
 
 			// Referencia a la RemoveView de la LiveCard para poder modificarla luego
 			mLiveCardRemoveViews = new RemoteViews(getPackageName(), R.layout.livecard);
-			InvestorCard card1 = new InvestorCard(this, "BBVA", "44.5", "+0.56%");
+			InvestorCard card1 = new InvestorCard(this, "BBVA", "44.5", "+0.56%", R.drawable.bbva_left);
 			
 			//mLiveCardRemoveViews.addView(null, card1.toView());
 			mLiveCard.setViews(mLiveCardRemoveViews);
 			
-			Intent intent = new Intent(this, MenuActivity.class);
+			Intent intent = new Intent(this, MainActivity.class);
 			mLiveCard.setAction(PendingIntent.getActivity(this, 0, intent, 0));
 			mLiveCard.publish(LiveCard.PublishMode.REVEAL);
 			
